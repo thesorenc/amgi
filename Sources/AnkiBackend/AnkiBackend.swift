@@ -315,6 +315,11 @@ extension AnkiBackend {
         package static let schedTimingToday: UInt32 = 5
         package static let countsForDeckToday: UInt32 = 10
         package static let congratsInfo: UInt32 = 11
+        // Bracketed by congratsInfo (11) and emptyFilteredDeck (15): the three
+        // scheduler.proto rpcs between them are RestoreBuriedAndSuspendedCards,
+        // UnburyDeck, BuryOrSuspendCards → 12, 13, 14.
+        package static let restoreBuriedAndSuspendedCards: UInt32 = 12
+        package static let buryOrSuspendCards: UInt32 = 14
         package static let emptyFilteredDeck: UInt32 = 15
         package static let rebuildFilteredDeck: UInt32 = 16
         package static let scheduleCardsAsNew: UInt32 = 17
