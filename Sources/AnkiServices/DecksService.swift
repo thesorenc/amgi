@@ -454,6 +454,7 @@ private func mapDeckTreeNode(_ node: Anki_Decks_DeckTreeNode, parentPath: String
             reviewCount: Int(node.reviewCount)
         ),
         isFiltered: node.filtered,
+        totalCards: Int(node.totalIncludingChildren),
         children: node.children.map { mapDeckTreeNode($0, parentPath: fullPath) }
     )
 }

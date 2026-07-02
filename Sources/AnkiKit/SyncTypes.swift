@@ -28,16 +28,22 @@ public struct SyncSummary: Sendable, Equatable {
     public var notesPushed: Int
     public var notesPulled: Int
     public var conflictsResolved: Int
+    /// True when the sync replaced the local collection wholesale (a full
+    /// download). Callers holding references into the old collection (open
+    /// handles, queued operations keyed to old state) must invalidate them.
+    public var didFullDownload: Bool
 
     public init(
         cardsPushed: Int = 0, cardsPulled: Int = 0,
-        notesPushed: Int = 0, notesPulled: Int = 0, conflictsResolved: Int = 0
+        notesPushed: Int = 0, notesPulled: Int = 0, conflictsResolved: Int = 0,
+        didFullDownload: Bool = false
     ) {
         self.cardsPushed = cardsPushed
         self.cardsPulled = cardsPulled
         self.notesPushed = notesPushed
         self.notesPulled = notesPulled
         self.conflictsResolved = conflictsResolved
+        self.didFullDownload = didFullDownload
     }
 }
 

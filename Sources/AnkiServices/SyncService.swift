@@ -63,7 +63,7 @@ extension SyncService: DependencyKey {
                             request: dlReq
                         )
                         try? backend.checkDatabase()
-                        return SyncSummary()
+                        return SyncSummary(didFullDownload: true)
 
                     case .fullUpload:
                         logger.info("Full upload required")

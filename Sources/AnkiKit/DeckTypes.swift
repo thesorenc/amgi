@@ -18,6 +18,9 @@ public struct DeckTreeNode: Sendable, Equatable, Identifiable {
     public var fullName: String
     public var counts: DeckCounts
     public var isFiltered: Bool
+    /// Total cards in this deck including all subdecks (rslib's
+    /// `total_including_children`) — nonzero even when nothing is due.
+    public var totalCards: Int
     public var children: [DeckTreeNode]
 
     public init(
@@ -26,6 +29,7 @@ public struct DeckTreeNode: Sendable, Equatable, Identifiable {
         fullName: String,
         counts: DeckCounts = .zero,
         isFiltered: Bool = false,
+        totalCards: Int = 0,
         children: [DeckTreeNode] = []
     ) {
         self.id = id
@@ -33,6 +37,7 @@ public struct DeckTreeNode: Sendable, Equatable, Identifiable {
         self.fullName = fullName
         self.counts = counts
         self.isFiltered = isFiltered
+        self.totalCards = totalCards
         self.children = children
     }
 }
