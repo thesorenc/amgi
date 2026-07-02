@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		017B3E48EEAC49360EC17414 /* LiveSyncTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34CAD2D2C0EDA8DAFB8F1BC8 /* LiveSyncTest.swift */; };
 		01BBA23FD8A728553F6179CB /* EaseChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7B1366ED7DF9A2977AC85B /* EaseChart.swift */; };
 		031AF93F320B7E29AC835AF7 /* StatsDualAxisSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FA551A94122B948800BA53 /* StatsDualAxisSupport.swift */; };
 		0453D87A64F5D97716D53E90 /* CardWebViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342022B67A1EDBA3B371E543 /* CardWebViewCoordinator.swift */; };
@@ -183,6 +184,7 @@
 		2B60A11C277A30E8180CB0F1 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		2E09DF2F9BCEDD04F59A90AA /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		342022B67A1EDBA3B371E543 /* CardWebViewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardWebViewCoordinator.swift; sourceTree = "<group>"; };
+		34CAD2D2C0EDA8DAFB8F1BC8 /* LiveSyncTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveSyncTest.swift; sourceTree = "<group>"; };
 		36D4DFA2DF34A6AD6A6A5366 /* ReviewPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewPreferences.swift; sourceTree = "<group>"; };
 		381DC7574DA0AD7F7586A1AC /* AddNoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNoteView.swift; sourceTree = "<group>"; };
 		38F8BCCF5848054DB8649D95 /* StatsChartTooltip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsChartTooltip.swift; sourceTree = "<group>"; };
@@ -423,6 +425,7 @@
 				8194F942C511DFA83C0CB371 /* AmgiAppApp.swift */,
 				44792958B343213988DC8FFB /* ContentView.swift */,
 				B219D0FE129E5978B1B69180 /* DebugView.swift */,
+				34CAD2D2C0EDA8DAFB8F1BC8 /* LiveSyncTest.swift */,
 				9DE9F2C493FA28C7CD204D93 /* WriteWidgetSnapshot.swift */,
 				D3B4DE84AA5798262B840FF6 /* Browse */,
 				90ADF1CE73507EC0A39F4C07 /* Decks */,
@@ -729,6 +732,7 @@
 				A21440496544796FAF46C370 /* ImageOcclusionWorkspaceView.swift in Sources */,
 				70E78891F6A13FB1AD4C6641 /* ImportHelper.swift in Sources */,
 				0C2752F4E87C078DFC8271DE /* IntervalsChart.swift in Sources */,
+				017B3E48EEAC49360EC17414 /* LiveSyncTest.swift in Sources */,
 				ABFA94EB10FCE4ECADD03DBA /* LoginSheet.swift in Sources */,
 				679B377C1C8B788E15361E76 /* LookupAudioSupport.swift in Sources */,
 				61D4ED23B8FFB20F6E39A029 /* LookupPopupView.swift in Sources */,

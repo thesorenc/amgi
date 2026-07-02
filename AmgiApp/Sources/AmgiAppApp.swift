@@ -85,6 +85,7 @@ struct AnkiAppApp: App {
                     ContentView(pendingReviewDeckId: $pendingReviewDeckId)
                 }
             }
+            .task { await maybeRunLiveSyncTest() }
             .onChange(of: scenePhase) { _, newPhase in
                 if newPhase == .active {
                     Task { await writeWidgetSnapshot() }
