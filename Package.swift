@@ -22,7 +22,6 @@ let package = Package(
         .library(name: "AnkiProto", targets: ["AnkiProto"]),
         .library(name: "AnkiBackend", targets: ["AnkiBackend"]),
         .library(name: "AnkiServices", targets: ["AnkiServices"]),
-        .library(name: "AnkiClients", targets: ["AnkiClients"]),
         .library(name: "AnkiSync", targets: ["AnkiSync"]),
         .library(name: "AmgiCardWeb", targets: ["AmgiCardWeb"]),
     ],
@@ -30,11 +29,15 @@ let package = Package(
         .package(url: "https://github.com/pointfreeco/swift-dependencies", from: "1.0.0"),
         .package(url: "https://github.com/apple/swift-log.git", from: "1.0.0"),
         .package(url: "https://github.com/apple/swift-protobuf.git", from: "1.28.0"),
-        // Reader/Dictionary domain types live in a sibling package so the
-        // book/chapter/lookup model isn't entangled with Anki primitives.
-        // The Anki-bridged loader (ReaderBookClient) lives in AnkiClients
-        // and imports this package for its types.
-        .package(path: "AmgiReader"),
+        // NOTE (glance branch): upstream also declares `.package(path:
+        // "AmgiReader")` for the reader/dictionary feature, consumed only by
+        // the AnkiClients target. SPM refuses to resolve a *remote* package
+        // pinned by revision when it depends on a local path package
+        // ("package 'amgi' is required using a revision-based requirement and
+        // it depends on local package 'amgireader', which is not supported"),
+        // so a consumer could not pin this fork at all. AnkiClients and
+        // AmgiReader are app-side reader features, not part of the Anki
+        // engine, so this branch drops both. Re-apply when merging upstream.
     ],
     targets: [
         // MARK: - Rust Bridge
@@ -72,21 +75,6 @@ let package = Package(
                 "AnkiProto",
                 "AnkiSync",
                 .product(name: "SwiftProtobuf", package: "swift-protobuf"),
-                .product(name: "Dependencies", package: "swift-dependencies"),
-                .product(name: "DependenciesMacros", package: "swift-dependencies"),
-                .product(name: "Logging", package: "swift-log"),
-            ],
-            swiftSettings: sharedSwiftSettings
-        ),
-        .target(
-            name: "AnkiClients",
-            dependencies: [
-                "AnkiKit",
-                "AnkiBackend",
-                "AnkiProto",
-                "AnkiServices",
-                "AnkiSync",
-                .product(name: "AmgiReader", package: "AmgiReader"),
                 .product(name: "Dependencies", package: "swift-dependencies"),
                 .product(name: "DependenciesMacros", package: "swift-dependencies"),
                 .product(name: "Logging", package: "swift-log"),
