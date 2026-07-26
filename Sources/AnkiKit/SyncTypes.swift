@@ -32,11 +32,22 @@ public struct SyncSummary: Sendable, Equatable {
     /// download). Callers holding references into the old collection (open
     /// handles, queued operations keyed to old state) must invalidate them.
     public var didFullDownload: Bool
+    /// The server asked for a **full upload**: this device's collection would
+    /// replace the server's wholesale, and with it every other device on the
+    /// account. `sync` deliberately does *not* perform it — it reports this and
+    /// returns, having changed nothing. A client that wants it must confirm
+    /// with the user and then call `fullSync(direction: .upload)` explicitly.
+    ///
+    /// The asymmetry with `didFullDownload` (which is performed automatically)
+    /// is intentional. A full download costs this device its un-synced local
+    /// state, which is bounded and recoverable. A full upload costs every
+    /// *other* device its history, and nothing on this device can undo it.
+    public var requiresFullUpload: Bool
 
     public init(
         cardsPushed: Int = 0, cardsPulled: Int = 0,
         notesPushed: Int = 0, notesPulled: Int = 0, conflictsResolved: Int = 0,
-        didFullDownload: Bool = false
+        didFullDownload: Bool = false, requiresFullUpload: Bool = false
     ) {
         self.cardsPushed = cardsPushed
         self.cardsPulled = cardsPulled
@@ -44,6 +55,7 @@ public struct SyncSummary: Sendable, Equatable {
         self.notesPulled = notesPulled
         self.conflictsResolved = conflictsResolved
         self.didFullDownload = didFullDownload
+        self.requiresFullUpload = requiresFullUpload
     }
 }
 

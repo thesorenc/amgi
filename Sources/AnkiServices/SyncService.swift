@@ -66,17 +66,20 @@ extension SyncService: DependencyKey {
                         return SyncSummary(didFullDownload: true)
 
                     case .fullUpload:
-                        logger.info("Full upload required")
-                        var ulReq = Anki_Sync_FullUploadOrDownloadRequest()
-                        ulReq.auth = auth
-                        ulReq.upload = true
-                        ulReq.serverUsn = response.serverMediaUsn
-                        try backend.callVoid(
-                            service: AnkiBackend.Service.sync,
-                            method: AnkiBackend.SyncMethod.fullUploadOrDownload,
-                            request: ulReq
-                        )
-                        return SyncSummary()
+                        // Deliberately NOT performed here. A full upload
+                        // replaces the server's collection with this device's,
+                        // and therefore overwrites every other device on the
+                        // account — irreversibly, with no local undo. Doing
+                        // that as a silent side effect of "sync" is the single
+                        // most destructive thing this library could do.
+                        //
+                        // Report it and return having changed nothing; the
+                        // client confirms with the user and calls
+                        // `fullSync(direction: .upload)` if that is really what
+                        // they want. (A full *download* stays automatic: it
+                        // only costs this device, and is recoverable.)
+                        logger.warning("Full upload required — not performed; caller must confirm")
+                        return SyncSummary(requiresFullUpload: true)
 
                     case .UNRECOGNIZED(let v):
                         logger.warning("Unrecognized sync required: \(v)")
