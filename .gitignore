@@ -6,7 +6,11 @@
 AmgiApp/memory/
 DerivedData/
 build/
-AnkiRust.xcframework/
+# AnkiRust.xcframework/ — deliberately TRACKED on this branch. Package.swift
+# resolves it via binaryTarget(path:), so a consumer pinning this fork by SHA
+# gets a buildable engine without a Rust toolchain, protoc, or a 20-minute
+# cargo build. ~19 MB compressed per rebuild; rebuild with
+# scripts/build-xcframework.sh and commit the result alongside a submodule bump.
 anki-bridge-rs/target/
 anki-upstream/target/
 .claude/settings.local.json
